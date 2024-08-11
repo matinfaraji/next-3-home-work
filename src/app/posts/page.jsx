@@ -8,9 +8,9 @@ export default async function page() {
   const dataPosts = postsData.posts;
   return (
     <Grid item>
-      <Link href="./posts" className="text-2xl">
+      <Typography className="text-2xl">
         Posts
-      </Link>
+      </Typography>
       {dataPosts.map((post) => (
         <Typography key={post.id}> <Link href={`/posts/${post.id}`}>{post.title}</Link></Typography>
       ))}

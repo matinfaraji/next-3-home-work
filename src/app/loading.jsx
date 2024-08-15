@@ -1,12 +1,18 @@
-import { Skeleton } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div>
-      <Skeleton variant="text" width={210} height={40} />
-      <Skeleton variant="rectangular" width={210} height={118} />
+    <Stack
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Skeleton variant="text" width={420} height={40} />
+      <Skeleton variant="rectangular" width={420} height={118} />
       <Skeleton variant="circular" width={40} height={40} />
-    </div>
+    </Stack>
   );
 }

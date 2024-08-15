@@ -1,8 +1,6 @@
-"use client"
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import Link from "next/link";
 export default async function HomeComponent() {
-
   return (
     <Grid
       container
@@ -11,7 +9,6 @@ export default async function HomeComponent() {
         height: "100vh",
         width: "100vw",
         justifyContent: "center",
-        // margin-top:""
       }}
     >
       <Grid item>

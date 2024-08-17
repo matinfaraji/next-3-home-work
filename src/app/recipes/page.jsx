@@ -21,7 +21,11 @@ export default async function page() {
         {recipes.map((recipe) => (
           <Typography key={recipe.id} variant="h4" align="center" m={1}>
             <Link href={`/recipes/${recipe.id}`}>
-              <Button variant="outlined" color="secondary" endIcon={<SendIcon />}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                endIcon={<SendIcon />}
+              >
                 {recipe.name}
               </Button>
             </Link>

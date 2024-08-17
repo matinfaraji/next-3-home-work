@@ -7,9 +7,12 @@ export default async function page({ params }) {
   const users = await getData("https://dummyjson.com/users");
   const dataUsers = users.users;
   const foundUser = dataUsers.find((i) => i.id === ls);
+  <meta name="description" content={`Details about ${foundUser.name}`} />
   return (
     <Grid item key="users" align="center">
-      <Grid className="text-2xl" align="center">Users</Grid>
+      <Grid className="text-2xl" align="center">
+        Users
+      </Grid>
       <Box sx={{ maxWidth: 500, justifyContent: "center" }} align="center">
         <Card variant="outlined">
           <CardContent>

@@ -3,13 +3,13 @@ import getData from "../../../../utils/getData";
 import {
   Card,
   CardContent,
-  CardMedia,
   Grid,
   List,
   ListItem,
   ListItemText,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 export default async function page({ params }) {
   const sx = params.id;
   // console.log(sx);
@@ -19,14 +19,20 @@ export default async function page({ params }) {
   const dataRecipes = recipesData.recipes;
   const recipe = dataRecipes.find((i) => i.id === ls);
   return (
-    <Grid container spacing={2} align="center">
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      align="center"
+      sx={{ maxWidth: 500, margin: " auto", paddingBottom:20}}
+    >
       <Grid item xs={12}>
         <Card>
-          <CardMedia
-            component="img"
-            height="140"
-            image={recipe.image}
+          <Image
+            src={recipe.image}
             alt={recipe.name}
+            width={400}
+            height={300}
           />
           <CardContent sx={{ justifyContent: "center" }}>
             <Typography variant="h5">{recipe.name}</Typography>

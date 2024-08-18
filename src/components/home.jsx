@@ -1,6 +1,14 @@
-import { Grid } from "@mui/material";
-import Link from "next/link";
-export default async function HomeComponent() {
+"use client";
+import { Button, Grid } from "@mui/material";
+import { useRouter } from "next/navigation";
+
+function HomeComponent() {
+  const router = useRouter();
+
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
+
   return (
     <Grid
       container
@@ -12,20 +20,34 @@ export default async function HomeComponent() {
       }}
     >
       <Grid item>
-        <Link href="./users" className="text-2xl">
+        <Button
+          color="inherit"
+          onClick={() => handleNavigation("/users")}
+          className="text-2xl"
+        >
           Users
-        </Link>
+        </Button>
       </Grid>
       <Grid item>
-        <Link href="./posts" className="text-2xl">
+        <Button
+          color="inherit"
+          onClick={() => handleNavigation("/posts")}
+          className="text-2xl"
+        >
           Posts
-        </Link>
+        </Button>
       </Grid>
       <Grid item>
-        <Link href="./recipes" className="text-2xl">
+        <Button
+          color="inherit"
+          onClick={() => handleNavigation("/recipes")}
+          className="text-2xl"
+        >
           Recipes
-        </Link>
+        </Button>
       </Grid>
     </Grid>
   );
 }
+
+export default HomeComponent;

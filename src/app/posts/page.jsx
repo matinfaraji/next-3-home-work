@@ -1,10 +1,16 @@
+"use client";
 import React from "react";
 import getData from "../../../utils/getData";
 import { Grid, Typography, Box, Button } from "@mui/material";
-import Link from "next/link";
 import SendIcon from "@mui/icons-material/Send";
+import { useRouter } from "next/navigation";
 
 export default async function page() {
+  const router = useRouter();
+
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
   const { posts } = await getData("https://dummyjson.com/posts");
 
   return (
@@ -20,15 +26,16 @@ export default async function page() {
       >
         {posts.map((post) => (
           <Typography key={post.id} variant="h6" align="center" m={1}>
-            <Link href={`/posts/${post.id}`}>
+            
               <Button
                 variant="outlined"
                 color="error"
                 endIcon={<SendIcon />}
+                onClick={() => handleNavigation(`/posts/${post.id}`)}
               >
                 {post.title}
               </Button>
-            </Link>
+        
           </Typography>
         ))}
       </Box>

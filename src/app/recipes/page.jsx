@@ -6,6 +6,7 @@ import Link from "next/link";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
 
 export default async function page() {
   const router = useRouter();
@@ -15,29 +16,38 @@ export default async function page() {
   };
   const { recipes } = await getData("https://dummyjson.com/recipes");
   return (
-    <Grid item>
-      <Typography variant="h3" align="center">
-        Recipes
-      </Typography>
-      <Box
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        flexWrap="wrap"
-      >
-        {recipes.map((recipe) => (
-          <Typography key={recipe.id} variant="h4" align="center" m={1}>
-            <Button
-              variant="outlined"
-              color="secondary"
-              endIcon={<SendIcon />}
-              onClick={() => handleNavigation(`/recipes/${recipe.id}`)}
-            >
-              {recipe.name}
-            </Button>
-          </Typography>
-        ))}
-      </Box>
-    </Grid>
+    <>
+      <Head>
+        <title>Recipes Page</title>
+        <meta
+          name="description"
+          content="A page displaying a list of recipes with navigation to their details."
+        />
+      </Head>
+      <Grid item>
+        <Typography variant="h3" align="center">
+          Recipes
+        </Typography>
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="center"
+          flexWrap="wrap"
+        >
+          {recipes.map((recipe) => (
+            <Typography key={recipe.id} variant="h4" align="center" m={1}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                endIcon={<SendIcon />}
+                onClick={() => handleNavigation(`/recipes/${recipe.id}`)}
+              >
+                {recipe.name}
+              </Button>
+            </Typography>
+          ))}
+        </Box>
+      </Grid>
+    </>
   );
 }

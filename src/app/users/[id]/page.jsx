@@ -1,19 +1,17 @@
 import React from "react";
 import getData from "../../../../utils/getData";
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
-import Head from "next/head";
+export async function generateMetadata({ params }) {
+  const foundUser = await getData(`https://dummyjson.com/users/${params.id}`);
+  return {
+    title: `${foundUser.username}`,
+  };
+}
 export default async function page({ params }) {
   const foundUser = await getData(`https://dummyjson.com/users/${params.id}`);
   <meta name="description" content={`Details about ${foundUser.name}`} />;
   return (
     <>
-      <Head>
-        <title>{`Details about ${foundUser.firstName} ${foundUser.lastName}`}</title>
-        <meta
-          name="description"
-          content={`Details about ${foundUser.firstName} ${foundUser.lastName}`}
-        />
-      </Head>
       <Grid item key="users" align="center">
         <Grid className="text-2xl" align="center">
           Users

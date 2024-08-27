@@ -10,22 +10,16 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import Head from "next/head";
+export async function generateMetadata({ params }) {
+  const recipe = await getData(`https://dummyjson.com/recipes/${params.id}`);
+  return {
+    title: `${recipe.name}`,
+  };
+}
 export default async function page({ params }) {
   const recipe = await getData(`https://dummyjson.com/recipes/${params.id}`);
   return (
     <>
-      <Head>
-        <title>{recipe.name} - Recipe</title>
-        <meta
-          name="description"
-          content={`Learn how to make ${recipe.name}, a delicious ${recipe.cuisine} dish.`}
-        />
-        <meta
-          name="keywords"
-          content={`recipe, ${recipe.name}, ${recipe.cuisine}, cooking`}
-        />
-      </Head>
       <Grid
         container
         spacing={2}

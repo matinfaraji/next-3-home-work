@@ -1,6 +1,11 @@
+import dynamic from "next/dynamic";
 import getData from "../../../utils/getData";
-import RecipesComponent from "@/components/recipesCard";
-
+export const metadata = {
+  title: "recipes page",
+};
+const RecipesComponent = dynamic(() => import("@/components/recipesCard"), {
+  loading: () => <p>Loading...</p>,
+});
 export default async function page() {
   const { recipes } = await getData("https://dummyjson.com/recipes");
   return (

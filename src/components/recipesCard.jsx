@@ -13,9 +13,6 @@ export default async function RecipesComponent({card}) {
   return (
     <>
       <Grid item>
-        <Typography variant="h3" align="center">
-          Recipes
-        </Typography>
         <Box
           display="flex"
           flexDirection="row"
@@ -23,7 +20,8 @@ export default async function RecipesComponent({card}) {
           flexWrap="wrap"
         >
           {card.map((recipe) => (
-            <Typography key={recipe.id} variant="h4" align="center" m={1}>
+            <Typography key={recipe.id} variant
+            ="h4" align="center" m={1}>
               <Button
                 variant="outlined"
                 color="secondary"

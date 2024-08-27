@@ -9,7 +9,8 @@ const PostsComponenet = dynamic(() => import("@/components/postsCard"), {
 });
 
 export default async function page() {
-  const { posts } = await getData("https://dummyjson.com/posts");
+  const  res  =await fetch ("http://localhost:3000/api/admin/posts")
+  const posts = await res.json();
 
   return (
     <>

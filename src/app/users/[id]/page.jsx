@@ -1,15 +1,17 @@
 import React from "react";
-import getData from "../../../../utils/getData";
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+
 export async function generateMetadata({ params }) {
-  const foundUser = await getData(`https://dummyjson.com/users/${params.id}`);
+  const res = await fetch(`http://localhost:3000/api/admin/users/${params.id}`);
+  const foundUser = await res.json();
   return {
     title: `${foundUser.username}`,
   };
 }
-export default async function page({ params }) {
-  const foundUser = await getData(`https://dummyjson.com/users/${params.id}`);
-  <meta name="description" content={`Details about ${foundUser.name}`} />;
+
+export default async function Page({ params }) {
+  const res = await fetch(`http://localhost:3000/api/admin/users/${params.id}`);
+  const foundUser = await res.json();
   return (
     <>
       <Grid item key="users" align="center">

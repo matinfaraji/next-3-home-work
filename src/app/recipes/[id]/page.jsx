@@ -1,5 +1,4 @@
 import React from "react";
-import getData from "../../../../utils/getData";
 import {
   Card,
   CardContent,
@@ -11,13 +10,15 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 export async function generateMetadata({ params }) {
-  const recipe = await getData(`https://dummyjson.com/recipes/${params.id}`);
+  const res = await fetch(`https://dummyjson.com/recipes/${params.id}`);
+  const recipe = await res.json();
   return {
     title: `${recipe.name}`,
   };
 }
 export default async function page({ params }) {
-  const recipe = await getData(`https://dummyjson.com/recipes/${params.id}`);
+  const res = await fetch(`https://dummyjson.com/recipes/${params.id}`);
+  const recipe = await res.json();
   return (
     <>
       <Grid

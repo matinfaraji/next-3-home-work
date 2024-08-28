@@ -23,6 +23,18 @@ function NavbarComponent() {
       <Grid item>
         <Button
           color="inherit"
+          onClick={() => handleNavigation("/")}
+          className="text-2xl"
+          sx={{
+            borderBottom: pathname === "/" ? "2px solid red" : "none",
+          }}
+        >
+          HOME
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          color="inherit"
           onClick={() => handleNavigation("/users")}
           className="text-2xl"
           sx={{
@@ -57,7 +69,7 @@ function NavbarComponent() {
         </Button>
       </Grid>
       <Grid item>
-    <ThemeSwitcher/>
+        <ThemeSwitcher />
       </Grid>
     </Grid>
   );

@@ -1,7 +1,16 @@
-import React from 'react'
+import React from "react";
+import Typography from "@mui/material/Typography";
 
 export default function HomeComponent() {
   return (
-    <div>hi</div>
-  )
+    <>
+      <Typography
+        variant="body1"
+        color="initial"
+        className=" flex justify-center text-9xl"
+      >
+        wellcome
+      </Typography>
+    </>
+  );
 }

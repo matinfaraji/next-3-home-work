@@ -1,12 +1,15 @@
 import React from "react";
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import GetData from "../../../../utils/getData";
+import UserDialogDemo from "@/components/edite-data/userEdit";
+
 
 export async function generateMetadata({ params }) {
-  // const res = await fetch(`http://localhost:3000/api/admin/users/${params.id}`);
-  // const foundUser = await res.json();
+  const foundUser = await GetData(
+    `http://localhost:3000/api/admin/users/${params.id}`
+  );
   return {
-    // title: `${foundUser.username}`,
+    title: `${foundUser.username}`,
   };
 }
 
@@ -14,7 +17,6 @@ export default async function Page({ params }) {
   const foundUser = await GetData(
     `http://localhost:3000/api/admin/users/${params.id}`
   );
-  // const foundUser = await res.json();
   return (
     <>
       <Grid item key="users" align="center">
@@ -29,7 +31,7 @@ export default async function Page({ params }) {
                 color="text.secondary"
                 gutterBottom
               >
-                {/* {foundUser.username} */}
+                {foundUser.username}
               </Typography>
               <Typography variant="h5" component="div">
                 {foundUser.firstName} {foundUser.lastName}
@@ -75,6 +77,7 @@ export default async function Page({ params }) {
           </Card>
         </Box>
       </Grid>
+      <UserDialogDemo key={foundUser.id}  popo={foundUser}/>
     </>
   );
 }

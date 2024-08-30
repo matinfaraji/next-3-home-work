@@ -7,10 +7,10 @@ const UsersComponent = dynamic(() => import("@/components/usersCard"), {
   loading: () => <p>Loading...</p>,
 });
 export default async function Page() {
-  const res = await fetch("http://localhost:3000/api/admin/users", {
+  const users = await GetData("http://localhost:3000/api/admin/users", {
     next: { tags: ["users"] },
   });
-  const users = await res.json();
+  // const users = await res.json();
 
   return (
     <>

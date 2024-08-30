@@ -4,11 +4,11 @@ import GetData from "../../../../utils/getData";
 import UserDialogDemo from "@/components/edite-data/userEdit";
 
 export async function generateMetadata({ params }) {
-  const foundUser = await GetData(
+  const found= await GetData(
     `http://localhost:3000/api/admin/users/${params.id}`
   );
   return {
-    title: `${foundUser.username}`,
+    // title: `${found.username}`,
   };
 }
 

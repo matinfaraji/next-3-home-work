@@ -15,29 +15,22 @@ export async function addUsers(userInfo) {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-      
-    revalidateTag("users");
+
+    revalidateTag("use");
   } catch (error) {
     console.error("Failed to add user:", error);
   }
 }
-export async function editUsers(id,updatedInfo) {
-  try {
-    parseInt(id)
-    const response = await fetch(`http://localhost:3000/api/admin/users/${id}`, {
-      method: 'PATCH',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      body: JSON.stringify(updatedInfo),
-    });
+export async function editUsers(id, updatedInfo) {
+  parseInt(id);
+  await fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(updatedInfo),
+  });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    revalidateTag('users');
-  } catch (error) {
-    console.error('Failed to edit user:', error);
-  }
+  revalidateTag("use");
+}
+export async function deleteUser(id) {
+  await fetch(`http://localhost:3000/api/admin/users/${id}`, { method: "DELETE" });
+  revalidateTag("race");
 }

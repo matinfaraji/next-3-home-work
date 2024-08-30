@@ -1,10 +1,19 @@
 import React from "react";
-import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import {
+  Box,
+
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import GetData from "../../../../utils/getData";
 import UserDialogDemo from "@/components/edite-data/userEdit";
 
+import HandleDeleteUser from "@/components/delete-data/deleteUser";
+
 export async function generateMetadata({ params }) {
-  const found= await GetData(
+  const found = await GetData(
     `http://localhost:3000/api/admin/users/${params.id}`
   );
   return {
@@ -19,6 +28,7 @@ export default async function Page({ params }) {
       next: { tags: ["users"] },
     }
   );
+
   return (
     <>
       <Grid item key="users" align="center">
@@ -79,6 +89,7 @@ export default async function Page({ params }) {
           </Card>
         </Box>
       </Grid>
+
       <UserDialogDemo key={foundUser.id} popo={foundUser} />
     </>
   );

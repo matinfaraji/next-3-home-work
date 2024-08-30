@@ -3,7 +3,6 @@ import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import GetData from "../../../../utils/getData";
 import UserDialogDemo from "@/components/edite-data/userEdit";
 
-
 export async function generateMetadata({ params }) {
   const foundUser = await GetData(
     `http://localhost:3000/api/admin/users/${params.id}`
@@ -15,7 +14,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const foundUser = await GetData(
-    `http://localhost:3000/api/admin/users/${params.id}`
+    `http://localhost:3000/api/admin/users/${params.id}`,
+    {
+      next: { tags: ["users"] },
+    }
   );
   return (
     <>
@@ -77,7 +79,7 @@ export default async function Page({ params }) {
           </Card>
         </Box>
       </Grid>
-      <UserDialogDemo key={foundUser.id}  popo={foundUser}/>
+      <UserDialogDemo key={foundUser.id} popo={foundUser} />
     </>
   );
 }

@@ -1,6 +1,4 @@
-import GetData from "../../../../../../utils/getData";
 
-// const { users } = await GetData("https://dummyjson.com/users");
 import {data} from '../route'
 export async function GET(req, { params }) {
   const user = data.find((x) => x.id === parseInt(params.id));
@@ -8,11 +6,15 @@ export async function GET(req, { params }) {
   
 }
 export async function PATCH(req, { params }) {
-    const { title } = await req.json();
-    // const title = body.title;
-    const index = data.findIndex((race) => race.id === params.id);
-  
-    users[index].title = title;
-  
-    return Response.json(data[index]);
+  const userId = parseInt(params.id);
+  const updatedInfo = await req.json();
+
+  const userIndex = data.findIndex((x) => x.id === userId);
+  if (userIndex === -1) {
+    return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
   }
+
+  data[userIndex] = { ...data[userIndex], ...updatedInfo };
+
+  return new Response(JSON.stringify(data[userIndex]), { status: 200 });
+}

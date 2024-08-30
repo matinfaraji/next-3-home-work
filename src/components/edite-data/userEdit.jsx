@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
+import { editUsers } from "../../../utils/actions";
 export function UserDialog({ formData, onClose, open }) {
   function generateRandomId() {
     return Math.floor(Math.random() * 1000000);
@@ -11,7 +12,8 @@ export function UserDialog({ formData, onClose, open }) {
   const randomId = generateRandomId();
 
   const handleSubmit = () => {
-    editUsers({
+    const updatedUser = {
+      id: formData.id,
       username: document.getElementById("username").value,
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
@@ -36,7 +38,9 @@ export function UserDialog({ formData, onClose, open }) {
         title: document.getElementById("companyTitle").value,
       },
       role: document.getElementById("role").value,
-    });
+    };
+
+    editUsers(formData.id, updatedUser);
     onClose("submit");
   };
 
@@ -46,6 +50,7 @@ export function UserDialog({ formData, onClose, open }) {
         <DialogTitle>Enter User Details</DialogTitle>
         <div style={{ padding: "20px" }}>
           <TextField
+            id="username"
             name="username"
             label="Username"
             fullWidth
@@ -53,6 +58,7 @@ export function UserDialog({ formData, onClose, open }) {
             defaultValue={formData.username}
           />
           <TextField
+            id="firstName"
             name="firstName"
             label="First Name"
             fullWidth
@@ -61,6 +67,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="lastName"
+            id="lastName"
             label="Last Name"
             fullWidth
             margin="normal"
@@ -68,6 +75,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="email"
+            id="email"
             label="Email"
             fullWidth
             margin="normal"
@@ -75,6 +83,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="gender"
+            id="gender"
             label="Gender"
             fullWidth
             margin="normal"
@@ -82,6 +91,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="birthDate"
+            id="birthDate"
             label="Birth Date"
             type="date"
             fullWidth
@@ -93,6 +103,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="bloodGroup"
+            id="bloodGroup"
             label="Blood Group"
             fullWidth
             margin="normal"
@@ -100,6 +111,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="height"
+            id="height"
             label="Height (cm)"
             fullWidth
             margin="normal"
@@ -107,6 +119,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="weight"
+            id="weight"
             label="Weight (kg)"
             fullWidth
             margin="normal"
@@ -114,6 +127,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="eyeColor"
+            id="eyeColor"
             label="Eye Color"
             fullWidth
             margin="normal"
@@ -121,6 +135,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="hairColor"
+            id="hairColor"
             label="Hair Color"
             fullWidth
             margin="normal"
@@ -128,6 +143,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="hairType"
+            id="hairType"
             label="Hair Type"
             fullWidth
             margin="normal"
@@ -135,6 +151,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="country"
+            id="country"
             label="Country"
             fullWidth
             margin="normal"
@@ -142,6 +159,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="state"
+            id="state"
             label="State"
             fullWidth
             margin="normal"
@@ -149,6 +167,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="university"
+            id="university"
             label="University"
             fullWidth
             margin="normal"
@@ -156,6 +175,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="companyName"
+            id="companyName"
             label="Company Name"
             fullWidth
             margin="normal"
@@ -163,6 +183,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="companyTitle"
+            id="companyTitle"
             label="Company Title"
             fullWidth
             margin="normal"
@@ -170,6 +191,7 @@ export function UserDialog({ formData, onClose, open }) {
           />
           <TextField
             name="role"
+            id="role"
             label="Role"
             fullWidth
             margin="normal"

@@ -1,5 +1,4 @@
 import GetData from "../../../../../utils/getData";
-import { v4 as uuid } from "uuid";
 const { users } = await GetData("https://dummyjson.com/users");
 export const data = users;
 export function GET() {
@@ -11,4 +10,3 @@ export async function POST(req) {
 
   return Response.json(body);
 }
-// , id: uuid()

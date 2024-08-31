@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import { v4 as uuidv } from "uuid";
 import { addUsers } from "../../../utils/actions";
 export function UserDialog(props) {
   const { onClose, open } = props;

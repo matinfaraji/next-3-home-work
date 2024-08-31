@@ -9,16 +9,19 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import GetData from "../../../../utils/getData";
 export async function generateMetadata({ params }) {
-  const res = await fetch(`https://dummyjson.com/recipes/${params.id}`);
-  const recipe = await res.json();
+  const recipe = await GetData(
+    `http://localhost:3000/api/admin/recipes/${params.id}`
+  );
   return {
     title: `${recipe.name}`,
   };
 }
 export default async function page({ params }) {
-  const res = await fetch(`https://dummyjson.com/recipes/${params.id}`);
-  const recipe = await res.json();
+  const recipe = await GetData(
+    `http://localhost:3000/api/admin/recipes/${params.id}`
+  );
   return (
     <>
       <Grid
@@ -26,12 +29,12 @@ export default async function page({ params }) {
         spacing={2}
         justifyContent="center"
         align="center"
-        sx={{ maxWidth: 500, margin: " auto", paddingBottom: 20 }}
+        sx={{ maxWidth: 500, margin: "auto", paddingBottom: 20 }}
       >
         <Grid item xs={12}>
           <Card>
             <Image
-              src={recipe.image}
+              src={recipe.image} // Ensure recipe.image is a valid URL or path
               alt={recipe.name}
               width={400}
               height={300}
@@ -56,7 +59,7 @@ export default async function page({ params }) {
                 Ingredients
               </Typography>
               <List>
-                {recipe.ingredients.map((ingredient, index) => (
+                {(recipe.ingredients || []).map((ingredient, index) => (
                   <ListItem key={index}>
                     <ListItemText primary={ingredient} />
                   </ListItem>
@@ -66,7 +69,7 @@ export default async function page({ params }) {
                 Instructions
               </Typography>
               <List>
-                {recipe.instructions.map((instruction, index) => (
+                {(recipe.instructions || []).map((instruction, index) => (
                   <ListItem key={index}>
                     <ListItemText primary={instruction} />
                   </ListItem>

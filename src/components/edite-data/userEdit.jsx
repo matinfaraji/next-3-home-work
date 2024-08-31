@@ -219,7 +219,7 @@ export default function UserDialogDemo({ popo }) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create User
+        edit User
       </Button>
       <UserDialog formData={popo} open={open} onClose={handleClose} />
     </div>

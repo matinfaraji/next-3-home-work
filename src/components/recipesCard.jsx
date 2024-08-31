@@ -3,6 +3,7 @@ import { Grid, Typography, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/navigation";
+import UserDialogDemo from "./add-data/recipesdata";
 
 export default async function RecipesComponent({card}) {
   const router = useRouter();
@@ -28,10 +29,11 @@ export default async function RecipesComponent({card}) {
                 endIcon={<SendIcon />}
                 onClick={() => handleNavigation(`/recipes/${recipe.id}`)}
               >
-                {recipe.name}
+               {recipe.id}, {recipe.name}
               </Button>
             </Typography>
           ))}
+        <UserDialogDemo/>
         </Box>
       </Grid>
     </>

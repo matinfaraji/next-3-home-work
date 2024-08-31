@@ -33,12 +33,14 @@ export default async function page({ params }) {
       >
         <Grid item xs={12}>
           <Card>
-            <Image
-              src={recipe.image} // Ensure recipe.image is a valid URL or path
-              alt={recipe.name}
-              width={400}
-              height={300}
-            />
+            {recipe.image && (
+              <Image
+                src={recipe.image}
+                alt={recipe.name}
+                width={400}
+                height={300}
+              />
+            )}
             <CardContent sx={{ justifyContent: "center" }}>
               <Typography variant="h5">{recipe.name}</Typography>
               <Typography color="text.secondary">

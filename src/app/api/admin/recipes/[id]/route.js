@@ -18,3 +18,22 @@ export async function PATCH(req, { params }) {
 
   return new Response(JSON.stringify(data[userIndex]), { status: 200 });
 }
+export async function DELETE(req, { params }) {
+  const id = parseInt(params.id, 10);
+
+  const index = data.findIndex((x) => x.id === id);
+
+  if (index === -1) {
+    return new Response(JSON.stringify({ error: "Item not found" }), {
+      status: 404,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const deleted = data.splice(index, 1)[0];
+
+  return new Response(JSON.stringify(deleted), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
+}

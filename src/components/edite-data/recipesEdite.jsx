@@ -181,7 +181,7 @@ export default function UserDialogDemo({ popo }) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create recipe
+        edit recipe
       </Button>
       <UserDialog formData={popo} open={open} onClose={handleClose} />
     </div>

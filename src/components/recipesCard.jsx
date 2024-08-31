@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/navigation";
 import UserDialogDemo from "./add-data/recipesdata";
+import HandleDeleteUser from "./delete-data/deleteRecipe";
 
 export default async function RecipesComponent({ card }) {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default async function RecipesComponent({ card }) {
               >
                 {recipe.id}, {recipe.name}
               </Button>
+              <HandleDeleteUser id={recipe.id} />
             </Typography>
           ))}
         </Box>

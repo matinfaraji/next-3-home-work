@@ -1,17 +1,19 @@
 import React from "react";
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import GetData from "../../../../utils/getData";
+import UserDialogDemo from "@/components/edite-data/postEdite";
 
 export async function generateMetadata({ params }) {
-  const foundPost = await fetch(`https://dummyjson.com/posts/${params.id}`);
+  const foundPost = await GetData(`http://localhost:3000/api/admin/posts/${params.id}`);
   return {
     title: `Post-User ID - ${foundPost.userId}`,
   };
 }
 export default async function page({ params }) {
-  const res = await fetch(`https://dummyjson.com/posts/${params.id}`);
-  const foundPost = await res.json();
+  const foundPost = await GetData(`http://localhost:3000/api/admin/posts/${params.id}`);
   return (
     <>
+    <UserDialogDemo key={foundPost.id} popo={foundPost} />
       <Grid item key="posts" align="center">
         <Typography variant="h2">Post</Typography>
         <Box sx={{ maxWidth: 400 }}>

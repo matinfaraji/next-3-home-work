@@ -2,6 +2,8 @@
 import { Grid, Typography, Box, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/navigation";
+import UserDialogDemo from "./add-data/postdata";
+import HandleDeleteUser from "./delete-data/deletePost";
 
 export default async function PostsComponenet({ card }) {
   const router = useRouter();
@@ -27,11 +29,13 @@ export default async function PostsComponenet({ card }) {
                 endIcon={<SendIcon />}
                 onClick={() => handleNavigation(`/posts/${post.id}`)}
               >
-                {post.title}
+              {post.id},  {post.title}
               </Button>
+              <HandleDeleteUser id={post.id} />
             </Typography>
           ))}
         </Box>
+        <UserDialogDemo />
       </Grid>
     </>
   );

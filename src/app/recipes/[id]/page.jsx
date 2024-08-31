@@ -26,6 +26,7 @@ export default async function page({ params }) {
   );
   return (
     <>
+     <UserDialogDemo key={recipe.id} popo={recipe} />
       <Grid
         container
         spacing={2}
@@ -83,7 +84,7 @@ export default async function page({ params }) {
           </Card>
         </Grid>
       </Grid>
-      <UserDialogDemo key={recipe.id} popo={recipe} />
+     
     </>
   );
 }

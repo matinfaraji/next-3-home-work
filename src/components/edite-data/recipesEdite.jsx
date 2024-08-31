@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -5,70 +6,72 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { addRecipe } from "../../../utils/actions";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+import { editRecipe } from "../../../utils/actions";
 
-export function UserDialog(props) {
-  const { onClose, open } = props;
-  const [recipeDetails, setRecipeDetails] = React.useState({
-    name: "",
-    cuisine: "",
-    difficulty: "",
-    prepTimeMinutes: "",
-    cookTimeMinutes: "",
-    servings: "",
-    caloriesPerServing: "",
-    ingredients: [],
-    instructions: [],
+export function UserDialog({ formData, onClose, open }) {
+  const [recipe, setRecipe] = React.useState({
+    name: formData.name || "",
+    cuisine: formData.cuisine || "",
+    difficulty: formData.difficulty || "",
+    prepTimeMinutes: formData.prepTimeMinutes || "",
+    cookTimeMinutes: formData.cookTimeMinutes || "",
+    servings: formData.servings || "",
+    caloriesPerServing: formData.caloriesPerServing || "",
+    rating: formData.rating || "",
+    reviewCount: formData.reviewCount || "",
+    ingredients: formData.ingredients || "",
+    instructions: formData.instructions || "",
+    image: formData.image || "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRecipeDetails((prevDetails) => ({
-      ...prevDetails,
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setRecipe((prevRecipe) => ({
+      ...prevRecipe,
       [name]: value,
     }));
+    console.log(`${name}: ${value}`);
   };
 
   const handleSubmit = () => {
-    const randomId = Math.floor(Math.random() * 1000000);
-    addRecipe({ id: randomId, ...recipeDetails });
+    const recipeId = parseInt(formData.id);
+    
+    const { ingredients, instructions, ...updatedRecipe } = recipe;
+
+    console.log("Submitting recipe:", { id: recipeId, ...updatedRecipe });
+    editRecipe(recipeId, updatedRecipe);
     onClose("submit");
   };
-
-  return (
-    <Dialog onClose={() => onClose()} open={open}>
-      <DialogTitle>Add Recipe</DialogTitle>
+return (
+    <Dialog open={open} onClose={() => onClose("cancel")}>
+      <DialogTitle>Edit Recipe</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
           name="name"
           label="Recipe Name"
+          type="text"
           fullWidth
-          variant="outlined"
+          value={recipe.name}
           onChange={handleChange}
         />
         <TextField
           margin="dense"
           name="cuisine"
           label="Cuisine"
+          type="text"
           fullWidth
-          variant="outlined"
+          value={recipe.cuisine}
           onChange={handleChange}
         />
         <TextField
           margin="dense"
           name="difficulty"
           label="Difficulty"
+          type="text"
           fullWidth
-          variant="outlined"
+          value={recipe.difficulty}
           onChange={handleChange}
         />
         <TextField
@@ -77,7 +80,7 @@ export function UserDialog(props) {
           label="Prep Time (minutes)"
           type="number"
           fullWidth
-          variant="outlined"
+          value={recipe.prepTimeMinutes}
           onChange={handleChange}
         />
         <TextField
@@ -86,7 +89,7 @@ export function UserDialog(props) {
           label="Cook Time (minutes)"
           type="number"
           fullWidth
-          variant="outlined"
+          value={recipe.cookTimeMinutes}
           onChange={handleChange}
         />
         <TextField
@@ -95,7 +98,7 @@ export function UserDialog(props) {
           label="Servings"
           type="number"
           fullWidth
-          variant="outlined"
+          value={recipe.servings}
           onChange={handleChange}
         />
         <TextField
@@ -104,13 +107,57 @@ export function UserDialog(props) {
           label="Calories per Serving"
           type="number"
           fullWidth
-          variant="outlined"
+          value={recipe.caloriesPerServing}
           onChange={handleChange}
         />
-        {/* Add fields for ingredients and instructions as needed */}
+        <TextField
+          margin="dense"
+          name="rating"
+          label="Rating"
+          type="number"
+          fullWidth
+          value={recipe.rating}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="reviewCount"
+          label="Review Count"
+          type="number"
+          fullWidth
+          value={recipe.reviewCount}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="ingredients"
+          label="Ingredients (comma separated)"
+          type="text"
+          fullWidth
+          value={recipe.ingredients}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="instructions"
+          label="Instructions (period separated)"
+          type="text"
+          fullWidth
+          value={recipe.instructions}
+          onChange={handleChange}
+        />
+        <TextField
+          margin="dense"
+          name="image"
+          label="Image URL"
+          type="text"
+          fullWidth
+          value={recipe.image}
+          onChange={handleChange}
+        />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => onClose()} color="primary">
+        <Button onClick={() => onClose("cancel")} color="primary">
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary">
@@ -120,8 +167,7 @@ export function UserDialog(props) {
     </Dialog>
   );
 }
-
-export default function UserDialogDemo() {
+export default function UserDialogDemo({ popo }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -135,10 +181,9 @@ export default function UserDialogDemo() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create Recipe
+        Create recipe
       </Button>
-
-      <UserDialog open={open} onClose={handleClose} />
+      <UserDialog formData={popo} open={open} onClose={handleClose} />
     </div>
   );
 }

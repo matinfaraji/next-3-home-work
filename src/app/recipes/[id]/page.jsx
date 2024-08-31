@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Card,
@@ -10,6 +11,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import GetData from "../../../../utils/getData";
+import UserDialogDemo from "@/components/edite-data/recipesEdite";
 export async function generateMetadata({ params }) {
   const recipe = await GetData(
     `http://localhost:3000/api/admin/recipes/${params.id}`
@@ -81,6 +83,7 @@ export default async function page({ params }) {
           </Card>
         </Grid>
       </Grid>
+      <UserDialogDemo key={recipe.id} popo={recipe} />
     </>
   );
 }

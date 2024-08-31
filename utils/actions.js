@@ -31,7 +31,9 @@ export async function editUsers(id, updatedInfo) {
   revalidateTag("use");
 }
 export async function deleteUser(id) {
-  await fetch(`http://localhost:3000/api/admin/users/${id}`, { method: "DELETE" });
+  await fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    method: "DELETE",
+  });
   revalidateTag("race");
 }
 export async function addRecipe(userInfo) {
@@ -52,4 +54,15 @@ export async function addRecipe(userInfo) {
   } catch (error) {
     console.error("Failed to add recipe:", error);
   }
+}
+export async function editRecipe(id, updatedInfo) {
+  await fetch(`http://localhost:3000/api/admin/recipes/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedInfo),
+  });
+
+  revalidateTag("rec");
 }

@@ -5,7 +5,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/navigation";
 import UserDialogDemo from "./add-data/recipesdata";
 
-export default async function RecipesComponent({card}) {
+export default async function RecipesComponent({ card }) {
   const router = useRouter();
 
   const handleNavigation = (path) => {
@@ -21,20 +21,19 @@ export default async function RecipesComponent({card}) {
           flexWrap="wrap"
         >
           {card.map((recipe) => (
-            <Typography key={recipe.id} variant
-            ="h4" align="center" m={1}>
+            <Typography key={recipe.id} variant="h4" align="center" m={1}>
               <Button
                 variant="outlined"
                 color="secondary"
                 endIcon={<SendIcon />}
                 onClick={() => handleNavigation(`/recipes/${recipe.id}`)}
               >
-               {recipe.id}, {recipe.name}
+                {recipe.id}, {recipe.name}
               </Button>
             </Typography>
           ))}
-        <UserDialogDemo/>
         </Box>
+        <UserDialogDemo />
       </Grid>
     </>
   );

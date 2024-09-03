@@ -10,14 +10,12 @@ import {
 import GetData from "../../../../utils/getData";
 import UserDialogDemo from "@/components/edite-data/userEdit";
 
-import HandleDeleteUser from "@/components/delete-data/deleteUser";
-
 export async function generateMetadata({ params }) {
   const found = await GetData(
     `http://localhost:3000/api/admin/users/${params.id}`
   );
   return {
-    // title: `${found.username}`,
+    title: `${found.firstName}`,
   };
 }
 
